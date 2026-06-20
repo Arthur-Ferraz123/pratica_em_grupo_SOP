@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cadência — Modelo de página sobre música</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EFE7D8;
+    --paper-dim:#E4DAC6;
+    --ink:#20242B;
+    --brass:#B8923F;
+    --burgundy:#7A2E3A;
+    --line: rgba(32,36,43,0.14);
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    line-height:1.55;
+  }
+
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    line-height:1.1;
+  }
+
+  .eyebrow{
+    font-size:0.72rem;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--burgundy);
+    font-weight:600;
+  }
+
+  /* ---------- HEADER ---------- */
+  header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:1.6rem 6vw;
+    border-bottom:1px solid var(--line);
+  }
+
+  .logo{
+    font-family:'Fraunces', serif;
+    font-size:1.4rem;
+    font-style:italic;
+    font-weight:600;
+  }
+
+  nav ul{
+    list-style:none;
+    display:flex;
+    gap:2.2rem;
+  }
+
+  nav a{
+    color:var(--ink);
+    text-decoration:none;
+    font-size:0.9rem;
+  }
+
+  nav a:hover{ color:var(--burgundy); }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    align-items:center;
+    gap:3rem;
+    padding:5rem 6vw;
+  }
+
+  .hero h1{
+    font-size:clamp(2.4rem, 5vw, 3.6rem);
+    margin:0.6rem 0 1.2rem;
+  }
+
+  .hero p{
+    max-width:38ch;
+    color:rgba(32,36,43,0.75);
+    margin-bottom:1.8rem;
+  }
+
+  .btn{
+    display:inline-block;
+    background:var(--ink);
+    color:var(--paper);
+    padding:0.85rem 1.7rem;
+    border-radius:2px;
+    text-decoration:none;
+    font-size:0.85rem;
+    letter-spacing:0.04em;
+    transition:background 0.2s ease;
+  }
+  .btn:hover{ background:var(--burgundy); }
+
+  /* vinyl record signature graphic */
+  .vinyl-wrap{ display:flex; justify-content:center; }
+
+  .vinyl{
+    width:300px; height:300px;
+    border-radius:50%;
+    background:
+      repeating-radial-gradient(circle at center,
+        #181A1F 0px, #181A1F 2px,
+        #24262C 2px, #24262C 4px);
+    box-shadow:0 20px 40px rgba(32,36,43,0.25);
+    position:relative;
+    animation:spin 9s linear infinite;
+  }
+
+  .vinyl::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    margin:auto;
+    width:108px; height:108px;
+    border-radius:50%;
+    background:var(--brass);
+    border:2px solid #2a2a2a;
+  }
+  .vinyl::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    margin:auto;
+    width:14px; height:14px;
+    border-radius:50%;
+    background:var(--ink);
+  }
+
+  @keyframes spin{ from{transform:rotate(0)} to{transform:rotate(360deg)} }
+
+  /* ---------- SECTION COMMON ---------- */
+  section.block{
+    padding:4.5rem 6vw;
+    border-top:1px solid var(--line);
+  }
+
+  .block-head{
+    max-width:60ch;
+    margin-bottom:2.8rem;
+  }
+
+  .block-head h2{
+    font-size:2rem;
+    margin-top:0.5rem;
+  }
+
+  .block-head p{
+    color:rgba(32,36,43,0.7);
+    margin-top:0.8rem;
+  }
+
+  /* ---------- HISTÓRICO (timeline) ---------- */
+  .timeline{
+    display:flex;
+    flex-direction:column;
+    gap:0;
+  }
+
+  .timeline-item{
+    display:grid;
+    grid-template-columns:110px 1fr;
+    gap:1.6rem;
+    padding:1.6rem 0;
+    border-top:1px solid var(--line);
+  }
+  .timeline-item:last-child{ border-bottom:1px solid var(--line); }
+
+  .timeline-year{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:1.3rem;
+    color:var(--brass);
+  }
+
+  .timeline-item h3{
+    font-size:1.1rem;
+    margin-bottom:0.4rem;
+  }
+
+  .timeline-item p{
+    color:rgba(32,36,43,0.7);
+    max-width:60ch;
+    font-size:0.95rem;
+  }
+
+  /*----------- SUBGENEROS (genre-grid) ------- */
+    .genre-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    border-top:1px solid var(--line);
+    border-left:1px solid var(--line);
+    }
+
+    .genre-item{
+    padding:1.8rem;
+    border-right:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    text-align:left;
+    }
+
+    .genre-item img{
+    width:100%;
+    height:40%;
+    object-fit:cover;
+    margin-bottom:1rem;
+    filter:grayscale(0.3);
+    }
+
+    .genre-item h3{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:1.15rem;
+    color:var(--brass);
+    margin-bottom:0.5rem;
+    }
+
+    .genre-item p{
+    font-size:0.9rem;
+    color:rgba(32,36,43,0.7);
+    line-height:1.5;
+    }
+
+  /* ---------- CURIOSIDADES (cards) ---------- */
+  .cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+    gap:1.4rem;
+  }
+
+  .card{
+    background:var(--paper-dim);
+    border:1px solid var(--line);
+    padding:1.6rem;
+    border-radius:3px;
+  }
+
+  .card .mark{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    color:var(--burgundy);
+    font-size:0.95rem;
+    margin-bottom:0.6rem;
+    display:block;
+  }
+
+  .card h3{ font-size:1.05rem; margin-bottom:0.5rem; }
+  .card p{ font-size:0.9rem; color:rgba(32,36,43,0.7); }
+
+  /* ---------- GALERIA ---------- */
+  .gallery{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(190px, 1fr));
+    gap:1.6rem;
+  }
+
+  .photo{
+    background:var(--paper-dim);
+    border:1px solid var(--line);
+    padding:0.7rem 0.7rem 1rem;
+  }
+
+  .photo-frame{
+    aspect-ratio:4/3;
+    background:
+      linear-gradient(135deg, #d8cbb0, #c2a98a 55%, #a98e6b);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+
+  .photo-frame svg{ width:34px; height:34px; opacity:0.5; }
+
+  .photo figcaption{
+    margin-top:0.7rem;
+    font-size:0.8rem;
+    color:rgba(32,36,43,0.65);
+    text-align:center;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    padding:2.4rem 6vw;
+    border-top:1px solid var(--line);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-size:0.82rem;
+    color:rgba(32,36,43,0.6);
+  }
+
+  @media (max-width:760px){
+    .hero{ grid-template-columns:1fr; padding-top:3rem; }
+    .vinyl-wrap{ order:-1; }
+    .vinyl{ width:200px; height:200px; }
+    nav ul{ display:none; }
+    .timeline-item{ grid-template-columns:1fr; gap:0.4rem; }
+    footer{ flex-direction:column; gap:0.6rem; text-align:center; }
+  }
+</style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">Cadência</div>
+    <nav>
+      <ul>
+        <li><a href="#historia">História</a></li>
+        <li><a href="#curiosidades">Curiosidades</a></li>
+        <li><a href="#galeria">Galeria</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="block" id="historia">
+    <div class="block-head">
+      <span class="eyebrow">Da origem ao presente</span>
+      <h2>Contexto Histórico</h2>
+      <p>O Hip-Hop nasceu na década de 1970 como um grito de expressão e resistência de jovens negros e latinos no bairro do Bronx, em Nova York.</p>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-year">1973</div>
+        <div>
+          <h3>O Big Bang no Bronx</h3>
+          <p>O DJ Kool Herc organiza a lendária festa de rua na avenida Sedgwick, em Nova York. Ao usar dois toca-discos para isolar e estender o "break" instrumental das músicas para a galera dançar, ele cria a base mecânica e cultural do Hip-Hop.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">1986-1996</div>
+        <div>
+          <h3>A Era de Ouro</h3>
+          <p>O rap domina definitivamente a indústria musical e cultural do planeta. É o ano de lançamentos históricos como o álbum All Eyez on Me de Tupac Shakur e a consolidação do G-Funk de Dr. Dre, marcando o auge da produção lírica e da rivalidade que definiu a década.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2026</div>
+        <div>
+          <h3>Hegemonia Global e Fusão de Estilo</h3>
+          <p>O Hip-Hop está totalmente consolidado como a força que dita as regras da cultura pop, da moda e do streaming mundial. O cenário atual é marcado pela mistura de subgêneros (como o Trap e o Drill) e pela consagração de ícones que transformaram o ritmo de rua em um império bilionário.</p>
+        </div>
+      </div>
+    </div>
+    <br><br>
+    <div class="block-head">
+      <span class="eyebrow">E no Brasil?</span>
+      <h2>Contexto Histórico</h2>
+      <p>O Hip-Hop chegou no Brasil na decada de 80, no centro de São Paulo. Ele começou como uma admiração pelas danças e batidas estadunidenses e rapidamente virou ferramenta de crônica social.</p>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-year">1984</div>
+        <div>
+          <h3>A ocupação de São Bento</h3>
+          <p>OInspirados por filmes de dança americanos, b-boys, DJs e MCs começam a se reunir na estação de metrô São Bento, em São Paulo. O local se torna o berço histórico e o ponto de articulação que espalhou a cultura pelo país.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">1997</div>
+        <div>
+          <h3>O Impacto de "Sobrevivendo no Inferno" </h3>
+          <p>Os Racionais MC's lançam o álbum que revolucionou a música e a sociologia brasileira. O disco colocou a realidade nua e crua das quebradas no centro do debate nacional, provando que o rap de mensagem tinha força para mover multidões de forma totalmente independente.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2026</div>
+        <div>
+          <h3>Consolidação e Ascensão ao Topo </h3>
+          <p>O Hip-Hop brasileiro vive sua era de maior alcance comercial, diversidade e impacto na moda. Do lirismo clássico ao domínio absoluto do Trap e do Grime nos grandes festivais e plataformas de streaming, o gênero se consolidou definitivamente como a música pop da juventude urbana do país..</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <section class="block" id="subgeneros">
+        <div class="block-head">
+            <span class="eyebrow">O hip-hop é bem mais diverso do que parece</span>
+            <h2>Sub-generos</h2>
+            <p>O hip-hop evoluiu e se modificou ao longo do tempo, gerando milhares de estilos e ramificações que não podem mais ser ignoradas. No trecho seguinte estão 6 dos maiores subgeneros junto com a imagem de um artista que passa a imagem desses estilos.</p>
+        </div>
+
+        <div class="genre-grid">
+            <div class="genre-item">
+                <img src="../Imagens/future.webp" alt="Future">
+                <h3>Trap</h3>
+                <p>Surgiu no sul dos EUA, no inicio dos anos 2000, caracterizado pelos beats pesados, hi-hats acelerados, sub-graves intensos e letras sobre a vida nas ruas.<br><br>
+                Na imagem está Future, rapper e produtor estadunidense</p>
+            </div>
+
+            <div class="genre-item">
+                <img src="../Imagens/pumapjl.jpg" alt="Pumapjl">
+                <h3>Boom Bap</h3>
+                <p>Surgiu nos anos 90 caracterizado pelas suas batidas ritmas, samples de jazz e soul, letras focadas em narrativas urbanas e um ritmo mais lento. O termo "boombap" vem da onomatopeia do som do bumbo (boom) e caixa (bap).
+                <br><br>
+                na imagem está Pumapjl, rapper brasileiro.
+                </p>
+            </div>
+
+            <div class="genre-item">
+                <img src="../Imagens/central_cee.jpg" alt="Central Cee">
+                <h3>Drill</h3>
+                <p>Originado em Chicago no inicio da decada de 2010, é conhecido pelas suas batidas "sombrias", graves pesados e letras cruas. O genero ganhou bastante popularidade na região do Reino Unido.
+                <br><br>
+                Na imagem está Central Cee, cantor e rapper britanico.
+                </p>
+            </div>
+
+            <div class="genre-item">
+                <img src="../Imagens/tupac.webp" alt="Tupac">
+                <h3>Gangsta Rap</h3>
+                <p>É o que vem na mente quando se pensa em rap. Surgiu em meados de 1980 e narra de forma nua e crua a realidade das ruas, abordando temas como violencia, desigualdade e conflitos.<br><br>
+                Na imagem está Tupac, rapper estadunidense conhecido como um dos maiores de todos os tempos.</p>
+            </div>
+
+            <div class="genre-item">
+                <img src="../Imagens/dr_dre.jpg" alt="Dr. Dre">
+                <h3>G-Funk</h3>
+                <p>Surgiu no inicio dos anos 90, com forte presença de samples de bandas de funk dos anos 70, alem de melodias lentas, graves profundos e sintetizadores agudos, com atmosfera suave e hipnotica.
+                <br><br>
+                na imagem está Dr. dre, rapper estadunidense.
+                </p>
+            </div>
+
+            <div class="genre-item">
+                <img src="../Imagens/emicida.webp" alt="Emicida">
+                <h3>Hip-Hop Consciente</h3>
+                <p>Surgiu nos anos 80, nos Estados Unidos. Não é caracterizado por uma sonoridade exata mas por priorizar letras que relatam as desigualdades economicas, de genero e raça, expondo problemas e inspirando mudanças sociais.
+                <br><br>
+                Na imagem está Emicida, cantor e rapper brasileiro.
+                </p>
+            </div>
+        </div>
+    </section>
+
+  <section class="block" id="curiosidades">
+    <div class="block-head">
+      <span class="eyebrow">Você sabia?</span>
+      <h2>Curiosidades</h2>
+      <p>Fatos interessantes sobre o Hip-Hop e sua história</p>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <span class="mark">Curiosidade 01</span>
+        <h3>O termo "Hip-Hop" nasceu de uma piada</h3>
+        <p>O termo "Hip-Hop" foi criado por Keith "Cowboy" Wiggins, que estava tirando sarro de um amigo que tinha acabado de se alistar no exército, imitando o ritmo da marcha dos soldados dizendo "hip/hop/hip/hop". Mais tarde, o lendário Afrika Bambaataa usou o termo para batizar o movimento cultural completo.</p>
+      </div>
+      <div class="card">
+        <span class="mark">Curiosidade 02</span>
+        <h3>O gênero já viajou para o espaço (literalmente)</h3>
+        <p>A NASA transmitiu a música "The Rain (Supa Dupa Fly)", da icônica Missy Elliott, em direção ao planeta Vênus. Com isso, Missy Elliott se tornou a primeira artista de Hip-Hop a ter sua obra enviada para o espaço profundo.</p>
+      </div>
+      <div class="card">
+        <span class="mark">Curiosidade 03</span>
+        <h3>O cinema impulsionou a Estação São Bento no Brasil</h3>
+        <p>O ponto de encontro histórico do hip-hop em São Paulo (a estação de metrô São Bento nos anos 1980) explodiu graças ao filme americano Beat Street (A Loucura do Ritmo), lançado em 1984.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="galeria">
+    <div class="block-head">
+      <span class="eyebrow">Registros</span>
+      <h2>Galeria de Fotos</h2>
+      <p>Separamos algumas fotos históricas do genero tanto nos EUA como no brasil.</p>
+    </div>
+    <div class="gallery">
+      <figure class="photo">
+        <div class="photo-frame">
+          <img src="../Imagens/NWA.jpg" alt="Grupo NWA" width="232" height="176">
+        </div>
+        <figcaption>Imagem do grupo NWA, considerados pioneiros do genero e um dos maiores da história.</figcaption>
+      </figure>
+      <figure class="photo">
+        <div class="photo-frame">
+          <img src="../Imagens/Ultima_foto_tupac.webp" alt="Ultima foto de Tupac, antes de seu assassinato" width="232" height="176">
+        </div>
+        <figcaption>Ultima foto de Tupac Shakur antes de seu assassinato em 7 de setembro de 1996. Tupac é considerado um dos se não o maior rapper da história.</figcaption>
+      </figure>
+      <figure class="photo">
+        <div class="photo-frame">
+          <img src="../Imagens/kendrick-lamar-not-like-us.avif" alt="Imagem do clipe de 'Not Like US'" width="232" height="176">
+        </div>
+        <figcaption>Imagem de um pedaço do clipe da musica "Not Like Us" de Kendrick Lamar. Ea mostra como a cultura ainda é forte nos dias de hoje.</figcaption>
+      </figure>
+      <figure class="photo">
+        <div class="photo-frame">
+          <img src="../Imagens/racionais_mcs.jpg" alt="Racionais MC's" width="232" height="176">
+        </div>
+        <figcaption>Imagem do Racionais MC's, o grupo mais importante do rap nacional, que popularizou o rap no Brasil.</figcaption>
+      </figure>
+      <figure class="photo">
+        <div class="photo-frame">
+          <img src="../Imagens/sabotage.jpg" alt="Sabotage" width="232" height="176">
+        </div>
+        <figcaption>Um dos maiores nomes do rap nacional, considerado a maior voz das ruas de São Paulo.</figcaption>
+      </figure>
+      <figure class="photo">
+        <div class="photo-frame">
+          <img src="../Imagens/Roda-de-Break-na-estacao-Sao-Bento.webp" alt="Roda de break" width="232" height="176">
+        </div>
+        <figcaption>Fotografia de jovens paulistas em uma roda de break. Ela captura a essencia de como o hip-hop surgiu e creseceu no brasil.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <footer>
+    <span>Arthur Silva Ferraz</span>
+    <span></span>
+  </footer>
+
+</body>
+</html>
