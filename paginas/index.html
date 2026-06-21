@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cadência — Modelo de página sobre música</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EFE7D8;
+    --paper-dim:#E4DAC6;
+    --ink:#20242B;
+    --brass:#B8923F;
+    --burgundy:#7A2E3A;
+    --line: rgba(32,36,43,0.14);
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    line-height:1.55;
+  }
+
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    line-height:1.1;
+  }
+
+  .eyebrow{
+    font-size:0.72rem;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--burgundy);
+    font-weight:600;
+  }
+
+  /* ---------- HEADER ---------- */
+  header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:1.6rem 6vw;
+    border-bottom:1px solid var(--line);
+  }
+
+  .logo{
+    font-family:'Fraunces', serif;
+    font-size:1.4rem;
+    font-style:italic;
+    font-weight:600;
+  }
+
+  nav ul{
+    list-style:none;
+    display:flex;
+    gap:2.2rem;
+  }
+
+  nav a{
+    color:var(--ink);
+    text-decoration:none;
+    font-size:0.9rem;
+  }
+
+  nav a:hover{ color:var(--burgundy); }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    align-items:center;
+    gap:3rem;
+    padding:5rem 6vw;
+  }
+
+  .hero h1{
+    font-size:clamp(2.4rem, 5vw, 3.6rem);
+    margin:0.6rem 0 1.2rem;
+  }
+
+  .hero p{
+    max-width:38ch;
+    color:rgba(32,36,43,0.75);
+    margin-bottom:1.8rem;
+  }
+
+  .btn{
+    display:inline-block;
+    background:var(--ink);
+    color:var(--paper);
+    padding:0.85rem 1.7rem;
+    border-radius:2px;
+    text-decoration:none;
+    font-size:0.85rem;
+    letter-spacing:0.04em;
+    transition:background 0.2s ease;
+  }
+  .btn:hover{ background:var(--burgundy); }
+
+  /* vinyl record signature graphic */
+  .vinyl-wrap{ display:flex; justify-content:center; }
+
+  .vinyl{
+    width:300px; height:300px;
+    border-radius:50%;
+    background:
+      repeating-radial-gradient(circle at center,
+        #181A1F 0px, #181A1F 2px,
+        #24262C 2px, #24262C 4px);
+    box-shadow:0 20px 40px rgba(32,36,43,0.25);
+    position:relative;
+    animation:spin 9s linear infinite;
+  }
+
+  .vinyl::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    margin:auto;
+    width:108px; height:108px;
+    border-radius:50%;
+    background:var(--brass);
+    border:2px solid #2a2a2a;
+  }
+  .vinyl::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    margin:auto;
+    width:14px; height:14px;
+    border-radius:50%;
+    background:var(--ink);
+  }
+
+  @keyframes spin{ from{transform:rotate(0)} to{transform:rotate(360deg)} }
+
+  /* ---------- SECTION COMMON ---------- */
+  section.block{
+    padding:4.5rem 6vw;
+    border-top:1px solid var(--line);
+  }
+
+  .block-head{
+    max-width:60ch;
+    margin-bottom:2.8rem;
+  }
+
+  .block-head h2{
+    font-size:2rem;
+    margin-top:0.5rem;
+  }
+
+  .block-head p{
+    color:rgba(32,36,43,0.7);
+    margin-top:0.8rem;
+  }
+
+  /* ---------- HISTÓRICO (timeline) ---------- */
+  .timeline{
+    display:flex;
+    flex-direction:column;
+    gap:0;
+  }
+
+  .timeline-item{
+    display:grid;
+    grid-template-columns:110px 1fr;
+    gap:1.6rem;
+    padding:1.6rem 0;
+    border-top:1px solid var(--line);
+  }
+  .timeline-item:last-child{ border-bottom:1px solid var(--line); }
+
+  .timeline-year{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:1.3rem;
+    color:var(--brass);
+  }
+
+  .timeline-item h3{
+    font-size:1.1rem;
+    margin-bottom:0.4rem;
+  }
+
+  .timeline-item p{
+    color:rgba(32,36,43,0.7);
+    max-width:60ch;
+    font-size:0.95rem;
+  }
+
+  /* ---------- CURIOSIDADES (cards) ---------- */
+  .cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+    gap:1.4rem;
+  }
+
+  .card{
+    background:var(--paper-dim);
+    border:1px solid var(--line);
+    padding:1.6rem;
+    border-radius:3px;
+  }
+
+  .card .mark{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    color:var(--burgundy);
+    font-size:0.95rem;
+    margin-bottom:0.6rem;
+    display:block;
+  }
+
+  .card h3{ font-size:1.05rem; margin-bottom:0.5rem; }
+  .card p{ font-size:0.9rem; color:rgba(32,36,43,0.7); }
+
+  /* ---------- GALERIA ---------- */
+  .gallery{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(190px, 1fr));
+    gap:1.6rem;
+  }
+
+  .photo{
+    background:var(--paper-dim);
+    border:1px solid var(--line);
+    padding:0.7rem 0.7rem 1rem;
+  }
+
+  .photo-frame{
+    aspect-ratio:4/3;
+    background:
+      linear-gradient(135deg, #d8cbb0, #c2a98a 55%, #a98e6b);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+
+  .photo-frame svg{ width:34px; height:34px; opacity:0.5; }
+
+  .photo figcaption{
+    margin-top:0.7rem;
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:1.4rem;
+    color:var(--brass);
+    text-align:center;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    padding:2.4rem 6vw;
+    border-top:1px solid var(--line);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-size:0.82rem;
+    color:rgba(32,36,43,0.6);
+  }
+
+  @media (max-width:760px){
+    .hero{ grid-template-columns:1fr; padding-top:3rem; }
+    .vinyl-wrap{ order:-1; }
+    .vinyl{ width:200px; height:200px; }
+    nav ul{ display:none; }
+    .timeline-item{ grid-template-columns:1fr; gap:0.4rem; }
+    footer{ flex-direction:column; gap:0.6rem; text-align:center; }
+  }
+</style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">Cadência</div>
+    <nav>
+      <ul>
+        <li><a href="#historia">História</a></li>
+        <li><a href="#curiosidades">Curiosidades</a></li>
+        <li><a href="#generos">Generos</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div>
+      <span class="eyebrow">Oque está por traz dos generos musicais?</span>
+      <h1>A história da musica</h1>
+      <p>Venha conhecer a história da musica e de alguns de seus generos, desde o contexto histórico, até algumas curiosidades. </p>
+      <a class="btn" href="#historia">Explorar história</a>
+    </div>
+    <div class="vinyl-wrap">
+      <div class="vinyl"></div>
+    </div>
+  </section>
+
+  <section class="block" id="historia">
+    <div class="block-head">
+      <span class="eyebrow">Da origem ao presente</span>
+      <h2>Contexto Histórico</h2>
+      <p>Dos primeiros sinais de musica na pré-história, até o desenvolvimento na idade média e renacentista e no mundo moderno.</p>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-year">- 500 d.C.</div>
+        <div>
+          <h3>Nascimento da musica</h3>
+          <p>A música surgiu com os primeiros seres humanos, que utilizavam sons, ritmos corporais e instrumentos simples em rituais, celebrações e formas de comunicação.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">500 - 1400</div>
+        <div>
+          <h3>Musica religiosa e tradição oral</h3>
+          <p>A música passou a ter forte influência das instituições religiosas, especialmente na Europa. Surgiram os primeiros sistemas de notação musical, permitindo registrar composições.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">1400 - 1820</div>
+        <div>
+          <h3>Desenvolvimento artístico e instrumental</h3>
+          <p>A música tornou-se mais sofisticada, com o crescimento da música instrumental, das orquestras e de compositores renomados. A teoria musical também avançou significativamente.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">1820 - 2000</div>
+        <div>
+          <h3>Popularização e novas tecnologias</h3>
+          <p>A Revolução Industrial e as gravações sonoras transformaram a produção e a distribuição da música. Surgiram gêneros como jazz, blues, rock, samba, MPB, hip-hop e muitos outros.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2000 - Presente</div>
+        <div>
+          <h3>Era digital e globalização</h3>
+          <p>A internet e as plataformas de streaming facilitaram o acesso à música em todo o mundo. Novos estilos surgem rapidamente, artistas independentes ganham espaço e a música torna-se cada vez mais global e conectada às redes sociais.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="curiosidades">
+    <div class="block-head">
+      <span class="eyebrow">Você sabia?</span>
+      <h2>Curiosidades</h2>
+      <p>Abaixo estão 3 fatos curiosos sobre a musica e seu impacto na vida e na história.</p>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <span class="mark">Curiosidade 01</span>
+        <h3>A música é mais antiga que a escrita</h3>
+        <p>Evidências arqueológicas indicam que os seres humanos produzem música há pelo menos 40 mil anos. Algumas das flautas mais antigas já encontradas foram feitas de ossos de aves e mamutes.</p>
+      </div>
+      <div class="card">
+        <span class="mark">Curiosidade 02</span>
+        <h3>O cérebro inteiro participa da música</h3>
+        <p>Ouvir ou tocar música ativa diversas áreas do cérebro ao mesmo tempo, incluindo regiões relacionadas à memória, emoções, linguagem e coordenação motora.</p>
+      </div>
+      <div class="card">
+        <span class="mark">Curiosidade 03</span>
+        <h3>Existem milhares de gêneros musicais</h3>
+        <p>Com o passar dos séculos e o contato entre diferentes culturas, surgiram milhares de gêneros e subgêneros musicais, desde estilos tradicionais até fusões modernas criadas na internet.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="generos">
+    <div class="block-head">
+        <span class="eyebrow">Generos</span>
+        <h2>História dos generos</h2>
+        <p>Se quer conhecer a história de alguns dos generos musicais mais importantes, clique nos links abaixo e confira!</p>
+    </div>
+    <div class="gallery">
+        <a href="aluna-Alice.html">
+        <figure class="photo">
+            <div class="photo-frame">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-AtP8TxMMwVR0sI9Wshc2ngujkFOyVmTJONSpj2wAd8DJggWVSje6Vn4k&s=10" alt="Salão de ópera" width="290" height=220>
+            </div>
+            <figcaption>Musica classica</figcaption>
+        </figure>
+        </a>
+        <a href="aluno-ARTHURSILVAFERRAZ.html">
+        <figure class="photo">
+            <div class="photo-frame">
+            <img src="https://img.redbull.com/images/c_limit,w_1500,h_1000/f_auto,q_auto/redbullcom/2019/04/03/579046f7-7be1-4564-99e4-3a875dcafc6e/racionais-mcs" alt= "Racionais MC's" width="290" height=220>
+            </div>
+            <figcaption>Hip-Hop</figcaption>
+        </figure>
+        </a>
+        <a href="aluno-EDUADOVICENTE.html">
+        <figure class="photo">
+            <div class="photo-frame">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSE3tileWYhJEo8bY-IfudZqqcO_D5cWXZ9fQ&s" width="290" alt="Instrumentos de rock" height=220>
+            </div>
+            <figcaption>Rock</figcaption>
+        </figure>
+        </a>
+        <a href="aluno-MarcosVinicius.html">
+        <figure class="photo">
+            <div class="photo-frame">
+            <img src="https://akamai.sscdn.co/tb/letras-blog/wp-content/uploads/2020/08/d94c57e-samba.jpg" width="290" alt="Roda de samba" height=220>
+            </div>
+            <figcaption>Samba</figcaption>
+        </figure>
+        </a>
+        <a href="aluno-erick.HTML">
+        <figure class="photo">
+            <div class="photo-frame">
+            <img src="https://s2-oglobo.glbimg.com/CF_xF9EAiVt2PuUmsk4qzTbGow0=/0x0:4167x1917/888x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_da025474c0c44edd99332dddb09cabe8/internal_photos/bs/2023/V/8/AIJR1DSOmYj6HCObSFyQ/gospel-site.jpg" width="290" alt="Gospel" height=220>
+            </div>
+            <figcaption>Gospel / Worship gospel</figcaption>
+        </figure>
+        </a>
+    </div>
+  </section>
+
+  <footer>
+    <span></span>
+    <span></span>
+  </footer>
+
+</body>
+</html>
