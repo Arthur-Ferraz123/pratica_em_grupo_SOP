@@ -1,0 +1,412 @@
+cd pratica_em_grupo_SOP<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cadência — Modelo de página sobre música</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EFE7D8;
+    --paper-dim:#E4DAC6;
+    --ink:#20242B;
+    --brass:#B8923F;
+    --burgundy:#7A2E3A;
+    --line: rgba(32,36,43,0.14);
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    line-height:1.55;
+  }
+
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    line-height:1.1;
+  }
+
+  .eyebrow{
+    font-size:0.72rem;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--burgundy);
+    font-weight:600;
+  }
+
+  /* ---------- HEADER ---------- */
+  header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:1.6rem 6vw;
+    border-bottom:1px solid var(--line);
+  }
+
+  .logo{
+    font-family:'Fraunces', serif;
+    font-size:1.4rem;
+    font-style:italic;
+    font-weight:600;
+  }
+
+  nav ul{
+    list-style:none;
+    display:flex;
+    gap:2.2rem;
+  }
+
+  nav a{
+    color:var(--ink);
+    text-decoration:none;
+    font-size:0.9rem;
+  }
+
+  nav a:hover{ color:var(--burgundy); }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    align-items:center;
+    gap:3rem;
+    padding:5rem 6vw;
+  }
+
+  .hero h1{
+    font-size:clamp(2.4rem, 5vw, 3.6rem);
+    margin:0.6rem 0 1.2rem;
+  }
+
+  .hero p{
+    max-width:38ch;
+    color:rgba(32,36,43,0.75);
+    margin-bottom:1.8rem;
+  }
+
+  .btn{
+    display:inline-block;
+    background:var(--ink);
+    color:var(--paper);
+    padding:0.85rem 1.7rem;
+    border-radius:2px;
+    text-decoration:none;
+    font-size:0.85rem;
+    letter-spacing:0.04em;
+    transition:background 0.2s ease;
+  }
+  .btn:hover{ background:var(--burgundy); }
+
+  /* vinyl record signature graphic */
+  .vinyl-wrap{ display:flex; justify-content:center; }
+
+  .vinyl{
+    width:300px; height:300px;
+    border-radius:50%;
+    background:
+      repeating-radial-gradient(circle at center,
+        #181A1F 0px, #181A1F 2px,
+        #24262C 2px, #24262C 4px);
+    box-shadow:0 20px 40px rgba(32,36,43,0.25);
+    position:relative;
+    animation:spin 9s linear infinite;
+  }
+
+  .vinyl::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    margin:auto;
+    width:108px; height:108px;
+    border-radius:50%;
+    background:var(--brass);
+    border:2px solid #2a2a2a;
+  }
+  .vinyl::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    margin:auto;
+    width:14px; height:14px;
+    border-radius:50%;
+    background:var(--ink);
+  }
+
+  @keyframes spin{ from{transform:rotate(0)} to{transform:rotate(360deg)} }
+
+  /* ---------- SECTION COMMON ---------- */
+  section.block{
+    padding:4.5rem 6vw;
+    border-top:1px solid var(--line);
+  }
+
+  .block-head{
+    max-width:60ch;
+    margin-bottom:2.8rem;
+  }
+
+  .block-head h2{
+    font-size:2rem;
+    margin-top:0.5rem;
+  }
+
+  .block-head p{
+    color:rgba(32,36,43,0.7);
+    margin-top:0.8rem;
+  }
+
+  /* ---------- HISTÓRICO (timeline) ---------- */
+  .timeline{
+    display:flex;
+    flex-direction:column;
+    gap:0;
+  }
+
+  .timeline-item{
+    display:grid;
+    grid-template-columns:110px 1fr;
+    gap:1.6rem;
+    padding:1.6rem 0;
+    border-top:1px solid var(--line);
+  }
+  .timeline-item:last-child{ border-bottom:1px solid var(--line); }
+
+  .timeline-year{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:1.3rem;
+    color:var(--brass);
+  }
+
+  .timeline-item h3{
+    font-size:1.1rem;
+    margin-bottom:0.4rem;
+  }
+
+  .timeline-item p{
+    color:rgba(32,36,43,0.7);
+    max-width:60ch;
+    font-size:0.95rem;
+  }
+
+  /* ---------- CURIOSIDADES (cards) ---------- */
+  .cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+    gap:1.4rem;
+  }
+
+  .card{
+    background:var(--paper-dim);
+    border:1px solid var(--line);
+    padding:1.6rem;
+    border-radius:3px;
+  }
+
+  .card .mark{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    color:var(--burgundy);
+    font-size:0.95rem;
+    margin-bottom:0.6rem;
+    display:block;
+  }
+
+  .card h3{ font-size:1.05rem; margin-bottom:0.5rem; }
+  .card p{ font-size:0.9rem; color:rgba(32,36,43,0.7); }
+
+  /* ---------- GALERIA ---------- */
+  .gallery{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(190px, 1fr));
+    gap:1.6rem;
+  }
+
+  .photo{
+    background:var(--paper-dim);
+    border:1px solid var(--line);
+    padding:0.7rem 0.7rem 1rem;
+  }
+
+  .photo-frame{
+    aspect-ratio:4/3;
+    background:
+      linear-gradient(135deg, #d8cbb0, #c2a98a 55%, #a98e6b);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+
+  .photo-frame svg{ width:34px; height:34px; opacity:0.5; }
+
+  .photo figcaption{
+    margin-top:0.7rem;
+    font-size:0.8rem;
+    color:rgba(32,36,43,0.65);
+    text-align:center;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    padding:2.4rem 6vw;
+    border-top:1px solid var(--line);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-size:0.82rem;
+    color:rgba(32,36,43,0.6);
+  }
+
+  @media (max-width:760px){
+    .hero{ grid-template-columns:1fr; padding-top:3rem; }
+    .vinyl-wrap{ order:-1; }
+    .vinyl{ width:200px; height:200px; }
+    nav ul{ display:none; }
+    .timeline-item{ grid-template-columns:1fr; gap:0.4rem; }
+    footer{ flex-direction:column; gap:0.6rem; text-align:center; }
+  }
+</style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">Samba e Pagode</div>
+    <nav>
+      <ul>
+        <li><a href="#historia">História</a></li>
+        <li><a href="#curiosidades">Curiosidades</a></li>
+        <li><a href="#galeria">Galeria</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="block" id="historia">
+    <div class="block-head">
+      <span class="eyebrow">Samba: da origem ao presente</span>
+      <h2>Contexto Histórico</h2>
+      <p>Samba é um gênero musical brasileiro originado a partir de tradições afro-brasileiras da Bahia no final do século XIX e desenvolvido no Rio de Janeiro no início do século XX. A palavra também é usada como prefixo para suas derivações, como o samba urbano carioca ou o samba de roda.</p>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-year">1890-1900</div>
+        <div>
+          <h3>Como e onde nasceu</h3>
+          <p>O samba nasceu a partir da mistura de tradições musicais e de dança trazidas pelos negros escravizados de origem africana, com forte raiz na Bahia.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">1890-1920</div>
+        <div>
+          <h3>As motivações</h3>
+          <p>O ritmo surgiu como uma forma de resistência cultural, celebração religiosa e união comunitária.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">1930-1940</div>
+        <div>
+          <h3>A Era de Ouro e o Rádio</h3>
+          <p>O samba deixou de ser perseguido e virou o símbolo da identidade nacional nas décadas de 1930 e 1940. Nesse período surgiram as primeiras Escolas de Samba como a Deixa Falar, no bairro do Estácio, e a Portela.</p>
+        </div>
+      </div>
+    </div>
+      <div class="timeline-item">
+        <div class="timeline-year">1980-1990</div>
+        <div>
+          <h3>A Revolução do Pagode</h3>
+          <p>O samba se renovou de forma arrebatadora com o surgimento do Pagode no Rio de Janeiro (especialmente no bloco Cacique de Ramos). Eles introduziram novos instrumentos como o tantã, o repique de mão e o banjo, deixando o som mais informal e perfeito para festas de quintal.</p>
+        </div>
+      </div>
+    </div>
+      <div class="timeline-item">
+        <div class="timeline-year">1990-2026</div>
+        <div>
+          <h3>O cenário atual</h3>
+          <p>Osamba e o pagode continuam extremamente fortes e comerciais. Coexistem tanto as tradicionais rodas de samba de raiz (que valorizam a história do gênero) quanto o pagode romântico e o "pop-pagode". Além disso, os desfiles das Escolas de Samba se transformaram em um dos maiores espetáculos visuais e turísticos do planeta.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+   <section class="block" id="musicas-famosas">
+    <div class="block-head">
+      <span class="eyebrow">Fama ao redor do mundo</span>
+      <h2>Sambas e pagodes mais famosos</h2><br>
+      <li>
+        <ul><b>O Show Tem Que Continuar</b> (Fundo de Quintal)</ul>
+        <li><ul><b>Vou Festejar </b>(Beth Carvalho)</ul></li>
+        <li><ul><b>Pé na Areia </b>(Diogo Nogueira)</ul></li>
+        <li><ul><b>Trem das Onze </b>(Adoniran Barbosa)</ul></li>
+      </li>
+    </div>
+
+  <section class="block" id="curiosidades">
+    <div class="block-head">
+      <span class="eyebrow">Você sabia?</span>
+      <h2>Curiosidades</h2>
+      <p>Espaço reservado para fatos curtos e interessantes relacionados ao tema musical.</p>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <span class="mark">Curiosidade 01</span>
+        <h3>Primeiro samba registrado no Brasil</h3>
+        <p> A música "Pelo Telefone", gravada em 1916 é considerada o primeiro samba a ser registrado oficialmente no país.</p>
+      </div>
+      <div class="card">
+        <span class="mark">Curiosidade 02</span>
+        <h3>Fundo de Quintal e suas revelações</h3>
+        <p>O Grupo Fundo de Quintal revelou diversos artistas do Samba, como Almir Guineto, Arlindo Cruz, Sombrinha, Jorge Aragão, Zeca Pagodinho e Jovelina Pérola Negra.</p>
+      </div>
+      <div class="card">
+        <span class="mark">Curiosidade 03</span>
+        <h3>Dia Nacional do Samba</h3>
+        <p>No Brasil existe o Dia Nacional do Samba, que é comemorado no dia 2 de dezembro desde 1962.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="galeria">
+    <div class="block-head">
+      <span class="eyebrow">Registros</span>
+      <h2>Galeria de Fotos</h2>
+      <p>Espaço reservado para fotos relacionadas ao samba e o pagode para exemplificar o que está na página.</p>
+    </div>
+    <div class="gallery">
+      <figure class="photo">
+        <div class="photo-frame">
+          <img src="Assets/Fundo de Quintal.png" width="105%">
+        </div>
+        <figcaption>Foto do Grupo Fundo de Quintal nos anos 1980</figcaption>
+      </figure>
+      <figure class="photo">
+        <div class="photo-frame">
+          <img src="Assets/desfile_carnaval.png" width="105%">
+        </div>
+        <figcaption>Imagem de desfile de carnaval do Gaviões da Fiel</figcaption>
+      </figure>
+      <figure class="photo">
+        <div class="photo-frame">
+          <img src="Assets/roda_de_samba.png" width="105%">
+        </div>
+        <figcaption>Foto de roda de samba</figcaption>
+      </figure>
+      <figure class="photo">
+        <div class="photo-frame">
+          <img src="Assets/pandeiro.png" width="105%">
+        </div>
+        <figcaption>O pandeiro é um dos instrumentos mais utilizados no samba</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <footer>
+    <span>Cadência — modelo de página sobre música</span>
+    <span>Marcos Vinicius da Silva Souza</span>
+  </footer>
+
+</body>
+</html>
