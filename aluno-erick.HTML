@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cadência — Música Gospel / Worship</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EFE7D8;
+    --paper-dim:#E4DAC6;
+    --ink:#20242B;
+    --brass:#B8923F;
+    --burgundy:#7A2E3A;
+    --line: rgba(32,36,43,0.14);
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    line-height:1.55;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    line-height:1.1;
+  }
+  .eyebrow{
+    font-size:0.72rem;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--burgundy);
+    font-weight:600;
+  }
+  /* ---------- HEADER ---------- */
+  header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:1.6rem 6vw;
+    border-bottom:1px solid var(--line);
+  }
+  .logo{
+    font-family:'Fraunces', serif;
+    font-size:1.4rem;
+    font-style:italic;
+    font-weight:600;
+  }
+  nav ul{
+    list-style:none;
+    display:flex;
+    gap:2.2rem;
+  }
+  nav a{
+    color:var(--ink);
+    text-decoration:none;
+    font-size:0.9rem;
+  }
+  nav a:hover{ color:var(--burgundy); }
+  /* ---------- HERO ---------- */
+  .hero{
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    align-items:center;
+    gap:3rem;
+    padding:5rem 6vw;
+  }
+  .hero h1{
+    font-size:clamp(2.4rem, 5vw, 3.6rem);
+    margin:0.6rem 0 1.2rem;
+  }
+  .hero p{
+    max-width:38ch;
+    color:rgba(32,36,43,0.75);
+    margin-bottom:1.8rem;
+  }
+  .btn{
+    display:inline-block;
+    background:var(--ink);
+    color:var(--paper);
+    padding:0.85rem 1.7rem;
+    border-radius:2px;
+    text-decoration:none;
+    font-size:0.85rem;
+    letter-spacing:0.04em;
+    transition:background 0.2s ease;
+  }
+  .btn:hover{ background:var(--burgundy); }
+  /* vinyl record */
+  .vinyl-wrap{ display:flex; justify-content:center; }
+  .vinyl{
+    width:300px; height:300px;
+    border-radius:50%;
+    background:repeating-radial-gradient(circle at center, #181A1F 0px, #181A1F 2px, #24262C 2px, #24262C 4px);
+    box-shadow:0 20px 40px rgba(32,36,43,0.25);
+    position:relative;
+    animation:spin 9s linear infinite;
+  }
+  .vinyl::before{
+    content:""; position:absolute; inset:0; margin:auto;
+    width:108px; height:108px; border-radius:50%;
+    background:var(--brass); border:2px solid #2a2a2a;
+  }
+  .vinyl::after{
+    content:""; position:absolute; inset:0; margin:auto;
+    width:14px; height:14px; border-radius:50%;
+    background:var(--ink);
+  }
+  @keyframes spin{ from{transform:rotate(0)} to{transform:rotate(360deg)} }
+  /* ---------- SECTION COMMON ---------- */
+  section.block{
+    padding:4.5rem 6vw;
+    border-top:1px solid var(--line);
+  }
+  .block-head{
+    max-width:60ch;
+    margin-bottom:2.8rem;
+  }
+  .block-head h2{
+    font-size:2rem;
+    margin-top:0.5rem;
+  }
+  .block-head p{
+    color:rgba(32,36,43,0.7);
+    margin-top:0.8rem;
+  }
+  /* ---------- HISTÓRICO ---------- */
+  .timeline{
+    display:flex;
+    flex-direction:column;
+    gap:0;
+  }
+  .timeline-item{
+    display:grid;
+    grid-template-columns:110px 1fr;
+    gap:1.6rem;
+    padding:1.6rem 0;
+    border-top:1px solid var(--line);
+  }
+  .timeline-item:last-child{ border-bottom:1px solid var(--line); }
+  .timeline-year{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:1.3rem;
+    color:var(--brass);
+  }
+  .timeline-item h3{
+    font-size:1.1rem;
+    margin-bottom:0.4rem;
+  }
+  .timeline-item p{
+    color:rgba(32,36,43,0.7);
+    max-width:60ch;
+    font-size:0.95rem;
+  }
+  /* ---------- CURIOSIDADES ---------- */
+  .cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+    gap:1.4rem;
+  }
+  .card{
+    background:var(--paper-dim);
+    border:1px solid var(--line);
+    padding:1.6rem;
+    border-radius:3px;
+  }
+  .card .mark{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    color:var(--burgundy);
+    font-size:0.95rem;
+    margin-bottom:0.6rem;
+    display:block;
+  }
+  .card h3{ font-size:1.05rem; margin-bottom:0.5rem; }
+  .card p{ font-size:0.9rem; color:rgba(32,36,43,0.7); }
+  /* ---------- GALERIA ---------- */
+  .gallery{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(190px, 1fr));
+    gap:1.6rem;
+  }
+  .photo{
+    background:var(--paper-dim);
+    border:1px solid var(--line);
+    padding:0.7rem 0.7rem 1rem;
+    border-radius:3px;
+  }
+  .photo-frame{
+    aspect-ratio:4/3;
+    overflow:hidden;
+    background:#d8cbb0;
+  }
+  .photo-frame img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition: transform 0.4s ease;
+  }
+  .photo:hover img{
+    transform: scale(1.08);
+  }
+  .photo figcaption{
+    margin-top:0.7rem;
+    font-size:0.8rem;
+    color:rgba(32,36,43,0.65);
+    text-align:center;
+  }
+  /* ---------- FOOTER ---------- */
+  footer{
+    padding:2.4rem 6vw;
+    border-top:1px solid var(--line);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-size:0.82rem;
+    color:rgba(32,36,43,0.6);
+  }
+  @media (max-width:760px){
+    .hero{ grid-template-columns:1fr; padding-top:3rem; }
+    .vinyl-wrap{ order:-1; }
+    .vinyl{ width:200px; height:200px; }
+    nav ul{ display:none; }
+    .timeline-item{ grid-template-columns:1fr; gap:0.4rem; }
+    footer{ flex-direction:column; gap:0.6rem; text-align:center; }
+  }
+</style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">Cadência</div>
+    <nav>
+      <ul>
+        <li><a href="#historia">História</a></li>
+        <li><a href="#curiosidades">Curiosidades</a></li>
+        <li><a href="#galeria">Galeria</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div>
+      <span class="eyebrow">Modelo · Gênero / Artista / Movimento</span>
+      <h1>Título principal aqui</h1>
+      <p>Espaço reservado para um parágrafo de abertura sobre o tema musical desta página — origem, estilo ou artista a ser apresentado.</p>
+      <a class="btn" href="#historia">Explorar história</a>
+    </div>
+    <div class="vinyl-wrap">
+      <div class="vinyl"></div>
+    </div>
+  </section>
+
+  <section class="block" id="historia">
+    <div class="block-head">
+      <span class="eyebrow">Da origem ao presente</span>
+      <h2>Contexto Histórico</h2>
+      <p>A música gospel tem raízes profundas nas tradições espirituais afro-americanas e na adoração cristã ao longo dos séculos.</p>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-year">Século XIX</div>
+        <div>
+          <h3>Origens nos Estados Unidos</h3>
+          <p>Os "spirituals" dos escravos afro-americanos misturam ritmos africanos, hinos protestantes e experiências de sofrimento, formando a base da música gospel.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">1921</div>
+        <div>
+          <h3>Thomas Dorsey — "Pai do Gospel"</h3>
+          <p>Thomas A. Dorsey populariza o termo "gospel" e compõe clássicos como "Precious Lord", unindo blues e espiritualidade.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">1970s</div>
+        <div>
+          <h3>A ascensão do Worship Contemporâneo</h3>
+          <p>Nos EUA, surge o movimento Praise &amp; Worship, com foco em adoração congregacional e intimidade com Deus.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">Décadas de 1990–2000</div>
+        <div>
+          <h3>Expansão global e no Brasil</h3>
+          <p>Bandas como Hillsong e, no Brasil, Aline Barros, Fernanda Brum e outros levam o worship para igrejas e rádios em todo o mundo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="curiosidades">
+    <div class="block-head">
+      <span class="eyebrow">Você sabia?</span>
+      <h2>Curiosidades &amp; Estilo Musical</h2>
+      <p>O estilo gospel/worship é emocional, poderoso e centrado na mensagem de fé.</p>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <span class="mark">Estilo Musical</span>
+        <h3>Características principais</h3>
+        <p>Combina vocais potentes e emocionais, harmonias ricas, uso de piano, órgão, guitarra e bateria. As letras falam de salvação, gratidão, entrega e esperança em Jesus.</p>
+      </div>
+      <div class="card">
+        <span class="mark">Curiosidade 01</span>
+        <h3>Raízes na escravidão</h3>
+        <p>Muitos spirituals gospel codificavam mensagens de liberdade e esperança durante a época da escravidão nos EUA.</p>
+      </div>
+      <div class="card">
+        <span class="mark">Curiosidade 02</span>
+        <h3>Thomas Dorsey</h3>
+        <p>Antes de se tornar o "pai do gospel", ele era pianista de blues. Sua conversão uniu os dois mundos musicais.</p>
+      </div>
+      <div class="card">
+        <span class="mark">Curiosidade 03</span>
+        <h3>Impacto no Brasil</h3>
+        <p>No Brasil, o gospel explodiu nas últimas décadas com artistas como Fernandinho, Gabriela Rocha e Isadora Pompeo, dominando playlists e cultos.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="galeria">
+    <div class="block-head">
+      <span class="eyebrow">Artistas Relevantes</span>
+      <h2>Cantores e Bandas</h2>
+      <p>Alguns dos nomes mais importantes do gospel/worship brasileiro e internacional.</p>
+    </div>
+    <div class="gallery">
+      <figure class="photo">
+        <div class="photo-frame">
+          <img src="https://yt3.googleusercontent.com/K7fRt8owSOVHb-iNKljdldYnwyIWUGoTmnUbNP7Loq4Vt54bJjfc5pc6aOJHNVNS5GQlx3vk=s900-c-k-c0x00ffffff-no-rj" alt="Hillsong Worship">
+        </div>
+        <figcaption>Hillsong Worship — "What a Beautiful Name"</figcaption>
+      </figure>
+      <figure class="photo">
+        <div class="photo-frame">
+          <img src="https://media.gazetadopovo.com.br/2016/06/47c00a1c4aec8d59200dd20ae6eaeb80-gpMedium.jpg" alt="Aline Barros">
+        </div>
+        <figcaption>Aline Barros (Brasil)</figcaption>
+      </figure>
+      <figure class="photo">
+        <div class="photo-frame">
+          <img src="https://yt3.googleusercontent.com/6vzlxHl31iy-s8--wgQD9Ade5l5BdSOoJB7yDZwqJHMtk6XZFBXTWiTeSHLjh1QVDsQJMzhh=s900-c-k-c0x00ffffff-no-rj" alt="Fernandinho">
+        </div>
+        <figcaption>Fernandinho (Brasil) — "Grande é o Senhor"</figcaption>
+      </figure>
+      <figure class="photo">
+        <div class="photo-frame">
+          <img src="https://yt3.googleusercontent.com/dwMIrxGeGzoRnz8QABT-_oQwSYuXjTsc10OB8WoHUcJJoKWNmBhGFvlKkX3Ht8TFszVByDH7owFNaVo=w544-h544-p-l90-rj" alt="Maverick City Music">
+        </div>
+        <figcaption>Bethel Music / Maverick City (EUA)</figcaption>
+      </figure>
+      <figure class="photo">
+        <div class="photo-frame">
+          <img src="https://i.scdn.co/image/ab6761610000e5eb0cb5b1ebe9ec804be3cc2d08" alt="Gabriela Rocha">
+        </div>
+        <figcaption>Gabriela Rocha (Brasil)</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <footer>
+    <span>Cadência — Trabalho em grupo sobre Música Gospel/Worship</span>
+    <span>Simples, informativo e pronto para usar!</span>
+  </footer>
+</body>
+</html>
